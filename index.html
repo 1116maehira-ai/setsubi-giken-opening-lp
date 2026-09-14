@@ -18,19 +18,25 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      z-index: 0;
+      z-index: 0;  /* 一番下：背景 */
     }
 
-    /* 動画が再生されたらフォールバック画像を非表示 */
-    .hero__video:not([paused]) ~ .hero__image--fallback {
-      opacity: 0;
-    }
-
-    /* フォールバック画像はz-indexを動画より下に */
+    /* フォールバック画像は動画より下 */
     .hero__image--fallback {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       z-index: -1;
       transition: opacity 0.4s;
     }
+
+    /* ── 動画より上に出すべき既存要素を z-index 指定 ── */
+    .hero__wash   { z-index: 1 !important; }
+    .hero__angle  { z-index: 2 !important; }
+    .hero__ribbon { z-index: 2 !important; }
+    .hero__inner  { position: relative; z-index: 5 !important; }
 
     /* ── 36周年ロゴ ── */
     .hero__anniversary {
